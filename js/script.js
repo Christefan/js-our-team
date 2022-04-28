@@ -54,7 +54,9 @@ for(let i=0; i < team.length;i++){
 function generateBox(newobj1,newobj2,newobj3) {
     const newElement = document.createElement("div");
 
-    newElement.innerHTML = `<p>${newobj1} - ${newobj2} - ${newobj3}</p>`    
+    newElement.innerHTML = `<h1>${newobj1} - ${newobj2}</h1>`    
+
+    newElement.innerHTML =`<img src="img/${newobj3}"></img>`
     // ritorno elemnto
     return newElement;
     
