@@ -34,7 +34,6 @@ const team = [
   document.getElementById("addMemberButton").addEventListener("click", addMember);
 
 function addMember(){
-    const gridObj = document.querySelector(".team-card");
     const userName = document.getElementById('name').value;
     console.log(userName);
 
@@ -44,36 +43,39 @@ function addMember(){
     const userImg= document.getElementById('image').value;
     console.log(userImg);
 
-    const domElement1 = generateBoxImg(userImg);
-    const domElement2 = generateBoxName(userName);
-    const domElement3 = generateBoxRole(userRole);
-
-    domElement2.appendChild(domElement3)
-
-    gridObj.append(domElement1,domElement2);
+    gridObjContainer(userName,userRole,userImg)
 }
 
 
 
 //Stampa
-for(let k in team){
-    console.log(team[k]);
-}
-const gridObj = document.querySelector(".team-card");
 for(let i=0; i < team.length;i++){
     const currentElement = team[i];
     console.log(currentElement.name, currentElement.role,currentElement.image);
-    const domElement1 = generateBoxImg(currentElement.image);
-    const domElement2 = generateBoxName(currentElement.name);
-    const domElement3 = generateBoxRole(currentElement.role);
-   
-    domElement2.appendChild(domElement3);
+    gridObjContainer(currentElement.name, currentElement.role,currentElement.image)
+}
 
-    // appendo questo elemnto 
-    gridObj.append(domElement1,domElement2);
+function gridObjContainer(name,role,img){
+const gridObjContainer = document.querySelector(".team-container");
+const domElement1 = generateBoxImg(img);
+const domElement2 = generateBoxName(name);
+const domElement3 = generateBoxRole(role);
+
+domElement2.appendChild(domElement3);
+
+// appendo questo elemnto 
+gridObjContainer.append(createBox(domElement1,domElement2));
 }
 
 
+
+
+function createBox(prova1,prova2){
+    const gridObjBox = document.createElement("div");
+    gridObjBox.setAttribute("class","team-card");
+    gridObjBox.append(prova1,prova2);
+    return gridObjBox;
+}
 
 function generateBoxImg(newobj3) {
     const newElement1 = document.createElement("div");
@@ -84,9 +86,10 @@ function generateBoxImg(newobj3) {
     return newElement1;
     
 }
+
+
+
 function generateBoxName(newobj1) {
-
-
     const newElement2 = document.createElement("div");
 
     newElement2.setAttribute('class','card-text') 
@@ -95,6 +98,9 @@ function generateBoxName(newobj1) {
     return newElement2;
     
 }
+
+
+
 function generateBoxRole(newobj2){
     const newElement3 = document.createElement("p");
     newElement3.innerHTML =`${newobj2}`;
