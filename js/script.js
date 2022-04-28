@@ -31,6 +31,28 @@ const team = [
     },
   ];
 
+  document.getElementById("addMemberButton").addEventListener("click", addMember);
+
+function addMember(){
+    const gridObj = document.querySelector(".team-card");
+    const userName = document.getElementById('name').value;
+    console.log(userName);
+
+    const userRole= document.getElementById('role').value;
+    console.log(userRole);
+
+    const userImg= document.getElementById('image').value;
+    console.log(userImg);
+
+    const domElement1 = generateBoxImg(userImg);
+    const domElement2 = generateBoxName(userName);
+    const domElement3 = generateBoxRole(userRole);
+
+    domElement2.appendChild(domElement3)
+
+    gridObj.append(domElement1,domElement2);
+}
+
 
 
 //Stampa
@@ -44,6 +66,7 @@ for(let i=0; i < team.length;i++){
     const domElement1 = generateBoxImg(currentElement.image);
     const domElement2 = generateBoxName(currentElement.name);
     const domElement3 = generateBoxRole(currentElement.role);
+   
     domElement2.appendChild(domElement3);
 
     // appendo questo elemnto 
